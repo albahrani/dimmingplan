@@ -4,10 +4,22 @@
 	<groupId>com.github.albahrani</groupId>
 	<artifactId>dimmingplan</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
 	<name>dimmingplan</name>
 	<description>Realize timetable based dimming with interpolation in Java.</description>
 	<inceptionYear>2015</inceptionYear>
-	<url>https://github.com/albahrani/light-daemon-pi</url>
+	<url>https://github.com/albahrani/dimmingplan</url>
+
+	<scm>
+		<url>https://github.com/albahrani/dimmingplan.git</url>
+		<connection>scm:git:ssh://git@github.com/albahrani/dimmingplan.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/albahrani/dimmingplan.git</developerConnection>
+	</scm>
+	
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/albahrani/dimmingplan/issues</url>
+	</issueManagement>
 
 	<licenses>
 		<license>
@@ -22,6 +34,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
