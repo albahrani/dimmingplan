@@ -15,90 +15,75 @@
  */
 package com.github.albahrani.dimmingplan;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class DimmingPlan {
 
-	private List<DimmingPlanChannel> dimmingPlanChannels = new ArrayList<>();
+	private Map<String, DimmingPlanChannel> dimmingPlanChannels = new HashMap<>();
 
 	public DimmingPlan() {
 
 	}
 
-	public List<DimmingPlanChannel> getChannels() {
-		return this.dimmingPlanChannels;
-	}
-
-	public void addChannel(DimmingPlanChannel dimmingPlanChannel) {
-		this.dimmingPlanChannels.add(dimmingPlanChannel);
-	}
-
-	public void load(DimmingPlanConfiguration configuration) {
-		this.dimmingPlanChannels.clear();
-
-		List<DimmingPlanChannelConfiguration> channels = configuration.getChannels();
-		for (DimmingPlanChannelConfiguration channelConfiguration : channels) {
-			DimmingPlanChannel dimmingPlanChannel = DimmingPlanChannel.load(channelConfiguration);
-			if (dimmingPlanChannel != null) {
-				this.dimmingPlanChannels.add(dimmingPlanChannel);
-			}
+	public DimmingPlan addTimetableEntry(String channelId, LocalTime time, double percentage) {
+		DimmingPlanChannel dimmingPlanChannel = this.dimmingPlanChannels.get(channelId);
+		if (dimmingPlanChannel == null) {
+			dimmingPlanChannel = new DimmingPlanChannel(channelId);
+			this.dimmingPlanChannels.put(channelId, dimmingPlanChannel);
 		}
+
+		dimmingPlanChannel.addTimetableEntry(time, percentage);
+		return this;
 	}
 
-	public DimmingPlanConfiguration toConfiguration() {
-		DimmingPlanConfiguration configuration = new DimmingPlanConfiguration();
-		List<DimmingPlanChannelConfiguration> channelConfigurations = new ArrayList<>();
-		for (DimmingPlanChannel dimmingPlanChannel : this.dimmingPlanChannels) {
-			DimmingPlanChannelConfiguration channelConfiguration = dimmingPlanChannel.toConfiguration();
-			channelConfigurations.add(channelConfiguration);
+	public void interpolate() {
+		Set<Entry<String, DimmingPlanChannel>> entrySet = this.dimmingPlanChannels.entrySet();
+		for (Entry<String, DimmingPlanChannel> entry : entrySet) {
+			DimmingPlanChannel value = entry.getValue();
+			value.interpolate();
 		}
-		configuration.setChannels(channelConfigurations);
-		return configuration;
 	}
 
 	public void setForcedValue(String channelId, double channelValue) {
-		for (Iterator<DimmingPlanChannel> iterator = dimmingPlanChannels.iterator(); iterator.hasNext();) {
-			DimmingPlanChannel dimmingPlanChannel = iterator.next();
-			if (channelId.equals(dimmingPlanChannel.getId())) {
-				dimmingPlanChannel.setForcedValue(channelValue);
-				break;
-			}
+		DimmingPlanChannel dimmingPlanChannel = this.dimmingPlanChannels.get(channelId);
+		if (dimmingPlanChannel != null) {
+			dimmingPlanChannel.setForcedValue(channelValue);
 		}
 	}
 
 	public void clearForcedValue(String channelId) {
-		for (Iterator<DimmingPlanChannel> iterator = dimmingPlanChannels.iterator(); iterator.hasNext();) {
-			DimmingPlanChannel dimmingPlanChannel = iterator.next();
-			if (channelId.equals(dimmingPlanChannel.getId())) {
-				dimmingPlanChannel.clearForcedValue();
-				break;
-			}
+		DimmingPlanChannel dimmingPlanChannel = this.dimmingPlanChannels.get(channelId);
+		if (dimmingPlanChannel != null) {
+			dimmingPlanChannel.clearForcedValue();
 		}
 	}
 
 	public Boolean isForced(String channelId) {
 		Boolean forced = null;
 
-		for (Iterator<DimmingPlanChannel> iterator = dimmingPlanChannels.iterator(); iterator.hasNext();) {
-			DimmingPlanChannel dimmingPlanChannel = iterator.next();
-			if (channelId.equals(dimmingPlanChannel.getId())) {
-				forced = dimmingPlanChannel.isForced();
-				break;
-			}
+		DimmingPlanChannel dimmingPlanChannel = this.dimmingPlanChannels.get(channelId);
+		if (dimmingPlanChannel != null) {
+			forced = dimmingPlanChannel.isForced();
 		}
 
 		return forced;
 	}
 
-	public Double getValue(String channelId, double time) {
-		for (Iterator<DimmingPlanChannel> iterator = dimmingPlanChannels.iterator(); iterator.hasNext();) {
-			DimmingPlanChannel dimmingPlanChannel = iterator.next();
-			if (channelId.equals(dimmingPlanChannel.getId())) {
-				return dimmingPlanChannel.getValue(time);
-			}
+	public Double getValue(String channelId, LocalTime time) {
+		DimmingPlanChannel dimmingPlanChannel = this.dimmingPlanChannels.get(channelId);
+		if (dimmingPlanChannel != null) {
+			return dimmingPlanChannel.getValue(time);
 		}
 		return null;
+	}
+
+	public List<DimmingPlanChannel> getChannels() {
+		return new ArrayList<>(this.dimmingPlanChannels.values());
 	}
 }

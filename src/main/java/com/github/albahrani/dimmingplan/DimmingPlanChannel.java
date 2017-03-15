@@ -22,38 +22,25 @@ import java.util.List;
 import org.apache.commons.math3.analysis.UnivariateFunction;
 import org.apache.commons.math3.analysis.interpolation.LinearInterpolator;
 import org.apache.commons.math3.analysis.interpolation.UnivariatePeriodicInterpolator;
-import org.pmw.tinylog.Logger;
 
 public class DimmingPlanChannel {
 
 	private String id;
-	private String color;
-	private UnivariateFunction function;
-	private long[] times;
-	private double[] lightPercentage;
+	private UnivariateFunction function = null;
+	private List<DimmingPlanTimeValuePair> times = new ArrayList<>();
 
 	private Double forcedValue = null;
 
-	public DimmingPlanChannel(String id, String color, long[] times, double[] lightPercentage) {
+	public DimmingPlanChannel(String id) {
 		this.id = id;
-		this.color = color;
-		this.times = times;
-		this.lightPercentage = lightPercentage;
-		UnivariatePeriodicInterpolator upi = new UnivariatePeriodicInterpolator(new LinearInterpolator(), LocalTime.MAX.toNanoOfDay(), 1);
-
-		double[] timesDouble = new double[times.length];
-		for (int i = 0; i < times.length; i++) {
-			timesDouble[i] = times[i];
-		}
-		function = upi.interpolate(timesDouble, lightPercentage);
 	}
 
 	public String getId() {
 		return id;
 	}
 
-	public String getColor() {
-		return color;
+	public double getValue(LocalTime time) {
+		return this.getValue(time.toNanoOfDay());
 	}
 
 	public double getValue(double time) {
@@ -61,54 +48,11 @@ public class DimmingPlanChannel {
 			return this.forcedValue;
 		}
 
+		if (this.function == null) {
+			return 0.0d;
+		}
 		double value = this.function.value(time);
 		return value;
-	}
-
-	public static DimmingPlanChannel load(DimmingPlanChannelConfiguration restChannel) {
-		String channelId = restChannel.getId();
-		String color = restChannel.getColor();
-
-		List<DimmingPlanTimeValuePair> timetable = restChannel.getTimetable();
-		if (timetable == null) {
-			// skip this channel because there is no timetable
-			Logger.warn("Skip channel {} because it has no timetable.", channelId);
-			return null;
-		}
-
-		int numTimeValueEntries = timetable.size();
-		long[] times = new long[numTimeValueEntries];
-		double[] lightPercentage = new double[numTimeValueEntries];
-
-		int i = 0;
-		for (DimmingPlanTimeValuePair restTimeValuePair : timetable) {
-			LocalTime time = restTimeValuePair.getTime();
-			double perc = restTimeValuePair.getPerc();
-			times[i] = time.toNanoOfDay();
-			lightPercentage[i] = perc;
-			i++;
-		}
-
-		DimmingPlanChannel dimmingPlanChannel = new DimmingPlanChannel(channelId, color, times, lightPercentage);
-		return dimmingPlanChannel;
-	}
-
-	public DimmingPlanChannelConfiguration toConfiguration() {
-		DimmingPlanChannelConfiguration retval = new DimmingPlanChannelConfiguration();
-		retval.setColor(this.color);
-		retval.setId(this.id);
-
-		List<DimmingPlanTimeValuePair> timetable = new ArrayList<>();
-		int timetableSize = this.getTimetableSize();
-		for (int i = 0; i < timetableSize; i++) {
-			DimmingPlanTimeValuePair tvpair = new DimmingPlanTimeValuePair();
-			tvpair.setTime(this.getTimeFor(i));
-			tvpair.setPerc(this.getLightPercentageFor(i));
-			timetable.add(tvpair);
-		}
-		retval.setTimetable(timetable);
-
-		return retval;
 	}
 
 	public void setForcedValue(double lightChannelValue) {
@@ -124,15 +68,30 @@ public class DimmingPlanChannel {
 		return (this.forcedValue != null);
 	}
 
-	private int getTimetableSize() {
-		return this.times.length;
+	public DimmingPlanChannel addTimetableEntry(LocalTime time, double percentage) {
+		DimmingPlanTimeValuePair tvp = new DimmingPlanTimeValuePair();
+		tvp.setTime(time);
+		tvp.setPerc(percentage);
+		this.times.add(tvp);
+		return this;
 	}
 
-	private LocalTime getTimeFor(int index) {
-		return LocalTime.ofNanoOfDay(this.times[index]);
-	}
+	public void interpolate() {
+		UnivariatePeriodicInterpolator upi = new UnivariatePeriodicInterpolator(new LinearInterpolator(), LocalTime.MAX.toNanoOfDay(), 1);
 
-	private double getLightPercentageFor(int index) {
-		return this.lightPercentage[index];
+		int timesSize = this.times.size();
+
+		double[] timesDouble = new double[timesSize];
+		double[] lightDouble = new double[timesSize];
+
+		for (int i = 0; i < timesSize; i++) {
+			DimmingPlanTimeValuePair timeValuePair = times.get(i);
+			LocalTime time = timeValuePair.getTime();
+			double perc = timeValuePair.getPerc();
+			timesDouble[i] = time.toNanoOfDay();
+			lightDouble[i] = perc;
+		}
+
+		function = upi.interpolate(timesDouble, lightDouble);
 	}
 }
