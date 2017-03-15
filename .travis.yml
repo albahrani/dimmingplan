@@ -1,25 +1,19 @@
 language: java
 sudo: false
 install: true
-
 addons:
   sonarqube:
-    branches :
-      - master
+    branches:
+    - master
     token:
-      secure: "SOfnsgywGUOLJwVX1gwiCrbrsDD5OIQxAqLmqxOzBbH2F65PWRQVL6KB39vyxbi6oBX0Pr9KqNu3JnHB5177COVSiaksDeM6I9en25BpczLkLJQANpitir7C0y4Vo/JIejwTO9asz+Kq7cqrrTxps0GxWUakamXQy6SuzLjn+7NLLJ2My9Mdw/9Czdifkl7MZpkeTIG9V/8XSE+X+NwnDLejLyARLdnp7+5fupZX3r+5RbBv8E5pQhSYWZpg7jsrgY9W5a7PzorSuiHmdDf4zWQcn4tNWZgxzGGMZ+BHQOcKplu4yOs9M+yuvxqHI5xNl2GG88/JJhsK3dsHvHCMoUzlFN1ykRqvLhpN/OTjfa2TsJVkIZxoYkG+le7fJxStKD0xpcOPpwDtr68KpPpnfY1JzK9RhH61d2cL93iMRtq9ZmtZYD3xuYUyW2gDoB/AJqQcCgGUH0XQYGcx9qIrBKqMLvogGQqeuYdyYc8hPkgaJuA06CuHh+bIqZiQRSa2mflRa8ZelR9ntROFB8bWXCgFBEv/g6yUKH5bIDi4gh6uwPXCiU95QX9UN2lSiPb+jcvpbqGtqiWWNDOPsmg6gmemn7ovJpBZyV+VGQjOISdHlxZPBgCrO5SohTvwP6GkBbXC2UtIUK4PtUgmRA8R0IcyRQ3gxgWCa/eG6Ndenak="
-
+      secure: RCppwaKzpMFAxrPiq3HQomwR7wuDfIXpCqn9WlA8FjN+jYC7M6gfOUj/JTGmcEy9X/TG7jqWHcD1UFSlLdGvegJH3KTRxqIcUriEmGJPtiUTZdwnT68Fm3oz3FahSXfWQlhw9HIgZM8VObwJSUD2QPrUA1fRNI6LX6oHgwzQ/Hp7k4pxh5MCa1XHsrdtgVkFRRjIKyDpANVc4fhuzQTBWJPZEsnioJzeJRQQvptxDN+cA1Q5GF99VXA5aSfrU59IjNBs4ad4f5ftxmz5EfW6bCxj9yOvJi5Qg258MnB4T40JNvfeNLKA7KEu59wGcAFj8pOdS3X6IGgU8pa6675RGs6Ku0mz49sPBFHTIK5auwnJI88YWiNEWBUakGohzqB9YSRdVGDs14v5ylnQ/tAAuEBJAPVzHiR2L6LYwKLbQ1ZDGJSSWNv7X7LAVna5G61zcpC4CnKUvFzB2GVNyKqG6EULQgbgE1KBim1PWnB4KUomUQhnCgEI1sf7bk20GqIvIAPuDJssXaRQubQ8QkBY45LsoSdsdHm8+6ds58cn9CRAllFNeWs/mFG2tFCkapC38fbGeLLBpuRX5Ycvvep6O84kQMON1wcP3LIaQS4LqxwXtBA8aSxwve6Oj5yT7NwFzmAFhh8QP567xmMwBOlunbfdWVoT7DIP4CahqsthsLA=
 jdk:
-  - oraclejdk8
-
+- oraclejdk8
 script:
-  # JaCoCo is used to have code coverage, the agent has to be activated
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
-
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 cache:
   directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.sonar/cache'
-
-notifications:
+  - $HOME/.m2/repository
+  - $HOME/.sonar/cache
+notifications: null
 email: false
