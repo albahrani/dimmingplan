@@ -15,14 +15,14 @@
  */
 package com.github.albahrani.dimmingplan;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.within;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalTime;
-import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -30,65 +30,20 @@ public class DimmingPlanTest {
 
 	@Test
 	public void testPlanLoad() {
-		DimmingPlan plan = new DimmingPlan();
-		plan.addTimetableEntry("ch1", LocalTime.of(6, 0), 0.0d);
-		plan.addTimetableEntry("ch1", LocalTime.of(8, 0), 100.0d);
+		DimmingPlan plan = DimmingPlan.create();
+		plan.channel("ch1").define(LocalTime.of(6, 0), 0.0d).define(LocalTime.of(8, 0), 100.0d);
 		plan.interpolate();
 
-		List<DimmingPlanChannel> dimmingPlanChannels = plan.getChannels();
-		assertNotNull(dimmingPlanChannels);
-		assertEquals(1, dimmingPlanChannels.size());
-		DimmingPlanChannel dimmingPlanChannel = dimmingPlanChannels.get(0);
-		assertNotNull(dimmingPlanChannel);
-		assertEquals("ch1", dimmingPlanChannel.getId());
-	}
+		assertEquals(1, plan.getChannelAmount());
+		Set<String> channelNames = plan.getChannelNames();
+		assertNotNull(channelNames);
+		assertTrue(channelNames.contains("ch1"));
 
-	@Test
-	public void testSetForcedValue() {
-		DimmingPlan plan = new DimmingPlan();
-		plan.addTimetableEntry("ch1", LocalTime.of(6, 0), 0.0d);
-		plan.addTimetableEntry("ch1", LocalTime.of(8, 0), 100.0d);
-		plan.interpolate();
+		assertThat(plan.channel("ch1").getPercentage(LocalTime.of(6, 0))).hasValueCloseTo(0.0d, within(0.001d));
+		assertThat(plan.channel("ch1").getPercentage(LocalTime.of(7, 0))).hasValueCloseTo(50.0d, within(0.001d));
+		assertThat(plan.channel("ch1").getPercentage(LocalTime.of(8, 0))).hasValueCloseTo(100.0d, within(0.001d));
 
-		plan.setForcedValue("ch1", 10.0d);
-
-		assertTrue(plan.isForced("ch1"));
-		assertEquals(10.0d, plan.getValue("ch1", LocalTime.of(8, 0)), 0.00001d);
-	}
-
-	@Test
-	public void testSetForcedValueUnknownChannel() {
-		DimmingPlan plan = new DimmingPlan();
-		plan.addTimetableEntry("ch1", LocalTime.of(6, 0), 0.0d);
-		plan.addTimetableEntry("ch1", LocalTime.of(8, 0), 100.0d);
-		plan.interpolate();
-
-		assertNull(plan.getValue("chX", LocalTime.of(8, 0)));
-
-		plan.setForcedValue("chX", 10.0d);
-
-		assertFalse(plan.isForced("ch1"));
-		assertEquals(100.0d, plan.getValue("ch1", LocalTime.of(8, 0)), 0.00001d);
-	}
-
-	@Test
-	public void testClearForcedValue() {
-		DimmingPlan plan = new DimmingPlan();
-		plan.addTimetableEntry("ch1", LocalTime.of(6, 0), 0.0d);
-		plan.addTimetableEntry("ch1", LocalTime.of(8, 0), 100.0d);
-		plan.interpolate();
-
-		assertFalse(plan.isForced("ch1"));
-		assertEquals(50.0d, plan.getValue("ch1", LocalTime.of(7, 0)), 0.00001d);
-
-		plan.setForcedValue("ch1", 10.0d);
-
-		assertTrue(plan.isForced("ch1"));
-		assertEquals(10.0d, plan.getValue("ch1", LocalTime.of(7, 0)), 0.00001d);
-
-		plan.clearForcedValue("ch1");
-
-		assertFalse(plan.isForced("ch1"));
-		assertEquals(50.0d, plan.getValue("ch1", LocalTime.of(7, 0)), 0.00001d);
+		plan.removeChannel("ch1");
+		assertEquals(0, plan.getChannelAmount());
 	}
 }
