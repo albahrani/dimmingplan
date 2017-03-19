@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Running deploy.sh"
 cd `dirname $0`/.. 
 
 if [ -z "$SONATYPE_USERNAME" ]
