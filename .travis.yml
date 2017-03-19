@@ -4,8 +4,8 @@ jdk:
 install:
   - mvn --settings .travis/settings.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
 before_install:
-  - ${GPG_EXECUTABLE} --version
-  - if [ ! -z "${GPG_SECRET_KEYS}" ]; then echo ${GPG_SECRET_KEYS} | base64 --decode | ${GPG_EXECUTABLE} --import; fi
+  - gpg2 --version
+  - if [ ! -z "${GPG_SECRET_KEYS}" ]; then echo ${GPG_SECRET_KEYS} | base64 --decode | gpg2 --import; fi
   - if [ ! -z "${GPG_OWNERTRUST}" ]; then echo ${GPG_OWNERTRUST} | base64 --decode | ${GPG_EXECUTABLE} --import-ownertrust; fi
 deploy:
   -
