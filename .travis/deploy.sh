@@ -1,12 +1,10 @@
 #!/bin/bash
-echo "BUILD_DIR=$TRAVIS_BUILD_DIR"
-echo $PWD
 cd `dirname $0`/.. 
 echo $PWD
 
 if [ -z "$SONATYPE_USERNAME" ]
 then
-    echo "error: please set SONATYPE_USERNAME and SONATYPE_PASSWORD environment variable"
+    echo "Please set SONATYPE_USERNAME and SONATYPE_PASSWORD environment variable"
     exit 1
 else
     echo "SONATYPE_USERNAME okay"
@@ -14,7 +12,7 @@ fi
 
 if [ -z "$SONATYPE_PASSWORD" ]
 then
-    echo "error: please set SONATYPE_PASSWORD environment variable"
+    echo "Please set SONATYPE_PASSWORD environment variable"
     exit 1
 else
     echo "SONATYPE_PASSWORD okay"    
