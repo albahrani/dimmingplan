@@ -1,17 +1,20 @@
 #!/bin/bash
-echo "Running deploy.sh"
 cd `dirname $0`/.. 
 
 if [ -z "$SONATYPE_USERNAME" ]
 then
     echo "error: please set SONATYPE_USERNAME and SONATYPE_PASSWORD environment variable"
     exit 1
+else
+    echo "SONATYPE_USERNAME okay"
 fi
 
 if [ -z "$SONATYPE_PASSWORD" ]
 then
     echo "error: please set SONATYPE_PASSWORD environment variable"
     exit 1
+else
+    echo "SONATYPE_PASSWORD okay"    
 fi
 
 if [ ! -z "$TRAVIS_TAG" ]
