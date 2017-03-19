@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "BUILD_DIR=$TRAVIS_BUILD_DIR"
 cd `dirname $0`/.. 
 
 if [ -z "$SONATYPE_USERNAME" ]
