@@ -1,6 +1,8 @@
 #!/bin/bash
 echo "BUILD_DIR=$TRAVIS_BUILD_DIR"
+echo $PWD
 cd `dirname $0`/.. 
+echo $PWD
 
 if [ -z "$SONATYPE_USERNAME" ]
 then
