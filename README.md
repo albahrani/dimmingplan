@@ -43,30 +43,30 @@ in Sonatype Snapshot Repository
 ## Usage
 ### Create a dimming plan
 ```Java
-		DimmingPlan plan = DimmingPlan.create();
+  DimmingPlan plan = DimmingPlan.create();
 ```
 ### Create a Channel
 ```Java
-    DimmingPlan plan = DimmingPlan.create();
-		DimmingPlanChannel channel = plan.channel("ch1");
+  DimmingPlan plan = DimmingPlan.create();
+  DimmingPlanChannel channel = plan.channel("ch1");
 ```
 ### Define a Timetable entry
 ```Java
-    channel.define(LocalTime.of(6, 0), 0.0d);		
+  channel.define(LocalTime.of(6, 0), 0.0d);		
 ```
 ### Interpolate the plan / channel
 ```Java
-		plan.interpolate();
-    channel.interpolate();
+  plan.interpolate();
+  channel.interpolate();
 ```
 ### Use fluent API
 ```Java
-    DimmingPlan plan = DimmingPlan.create();
-		plan.channel("ch1").define(LocalTime.of(6, 0), 0.0d).define(LocalTime.of(12, 0), 100.0d).define(LocalTime.of(21, 0), 0.0d);    
-    plan.channel("ch2").define(LocalTime.of(0, 0), 33.0d);        
-    plan.interpolate();
+  DimmingPlan plan = DimmingPlan.create();
+  plan.channel("ch1").define(LocalTime.of(6, 0), 0.0d).define(LocalTime.of(12, 0), 100.0d).define(LocalTime.of(21, 0), 0.0d);
+  plan.channel("ch2").define(LocalTime.of(0, 0), 33.0d);        
+  plan.interpolate();
 ```
 ### Retrieve the percentage for a certain time
 ```Java
-		OptionalDouble percentage = plan.channel("ch1").getPercentage(LocalTime.of(6, 0));
+  OptionalDouble percentage = plan.channel("ch1").getPercentage(LocalTime.of(6, 0));
 ```
