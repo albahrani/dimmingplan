@@ -7,18 +7,23 @@ Realize timetable based dimming with interpolation in Java.
 Project website: https://github.com/albahrani/dimmingplan <br />
 Project issues list: https://github.com/albahrani/dimmingplan/issues <br />
 <br />
-Release builds are not yet available.
+Release builds are available from Maven Central
+```xml
+  <dependency>
+    <groupId>com.github.albahrani</groupId>
+    <artifactId>dimmingplan</artifactId>
+    <version>0.0.1</version>
+  </dependency>
+```
 
 Snapshot builds are available via
 ```xml
   <dependency>
     <groupId>com.github.albahrani</groupId>
     <artifactId>dimmingplan</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
   </dependency>
-```
-in Sonatype Snapshot Repository
-```xml
+  ...
   <repository>
     <id>sonatype-snapshots-repo</id>
     <url>https://oss.sonatype.org/content/repositories/snapshots</url>
