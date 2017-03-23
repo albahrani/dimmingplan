@@ -45,7 +45,7 @@ Snapshot builds are available via
  See the License for the specific language governing permissions and
  limitations under the License.
 
-## Usage
+## USAGE
 ### Create a dimming plan
 ```Java
   DimmingPlan plan = DimmingPlan.create();
