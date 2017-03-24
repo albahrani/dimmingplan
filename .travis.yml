@@ -7,7 +7,7 @@ cache:
 addons:
   srcclr: true  
 install:
-  - mvn --settings .travis/settings.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+  - mvn --settings .travis/settings.xml install -DskipTests=true -B -V
 before_install:
   - echo $GPG_PASSPHRASE | gpg --passphrase-fd 0 keys.asc.gpg  
   - gpg --batch --yes --import keys.asc
