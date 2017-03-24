@@ -7,6 +7,7 @@ cache:
 addons:
   srcclr: true  
   sonarqube:
+    organization: "albahrani-github"
     branches:
       - master
       - addmvnprofiles   
