@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/albahrani/dimmingplan.svg?branch=master)](https://travis-ci.org/albahrani/dimmingplan)
 [![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.github.albahrani:dimmingplan)](https://sonarqube.com/dashboard/index/com.github.albahrani:dimmingplan)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.albahrani/dimmingplan/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.albahrani/dimmingplan)
 # dimmingplan | dimming timetable for Java
 Realize timetable based dimming with interpolation in Java.
 
