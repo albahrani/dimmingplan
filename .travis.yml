@@ -10,7 +10,6 @@ addons:
     organization: "albahrani-github"
     branches:
       - master
-      - addmvnprofiles   
 before_install:
   - echo $GPG_PASSPHRASE | gpg --passphrase-fd 0 keys.asc.gpg  
   - gpg --batch --yes --import keys.asc      
