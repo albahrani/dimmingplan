@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/albahrani/dimmingplan.svg?branch=master)](https://travis-ci.org/albahrani/dimmingplan)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.github.albahrani%3Adimmingplan&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.albahrani%3Adimmingplan)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.albahrani/dimmingplan/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.albahrani/dimmingplan)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Falbahrani%2Fdimmingplan.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Falbahrani%2Fdimmingplan?ref=badge_shield)
 # dimmingplan | dimming timetable for Java
 Realize timetable based dimming with interpolation in Java.
 
@@ -46,6 +47,9 @@ Snapshot builds are available via
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Falbahrani%2Fdimmingplan.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Falbahrani%2Fdimmingplan?ref=badge_large)
 
 ## USAGE
 ### Create a dimming plan
