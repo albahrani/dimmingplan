@@ -100,10 +100,7 @@ public class DimmingPlan {
 	 */
 	public DimmingPlanChannel channel(String channelId) {
 		Objects.requireNonNull(channelId);
-		DimmingPlanChannel dimmingPlanChannel = this.dimmingPlanChannels.computeIfAbsent(channelId, id -> {
-			return DimmingPlanChannel.create();
-		});
-		return dimmingPlanChannel;
+		return this.dimmingPlanChannels.computeIfAbsent(channelId, id -> DimmingPlanChannel.create());
 	}
 
 	/**
