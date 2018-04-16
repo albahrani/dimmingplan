@@ -100,11 +100,9 @@ public class DimmingPlan {
 	 */
 	public DimmingPlanChannel channel(String channelId) {
 		Objects.requireNonNull(channelId);
-		DimmingPlanChannel dimmingPlanChannel = this.dimmingPlanChannels.get(channelId);
-		if (dimmingPlanChannel == null) {
-			dimmingPlanChannel = DimmingPlanChannel.create();
-			this.dimmingPlanChannels.put(channelId, dimmingPlanChannel);
-		}
+		DimmingPlanChannel dimmingPlanChannel = this.dimmingPlanChannels.computeIfAbsent(channelId, id -> {
+			return DimmingPlanChannel.create();
+		});
 		return dimmingPlanChannel;
 	}
 
