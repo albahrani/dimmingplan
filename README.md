@@ -75,10 +75,14 @@ Snapshot builds are available via
 ```
 ### Use fluent API
 ```Java
-  DimmingPlan plan = DimmingPlan.create();
-  plan.channel("ch1").define(LocalTime.of(6, 0), 0.0d).define(LocalTime.of(12, 0), 100.0d).define(LocalTime.of(21, 0), 0.0d);
-  plan.channel("ch2").define(LocalTime.of(0, 0), 33.0d);        
-  plan.interpolate();
+  DimmingPlan.create()
+      .channel("ch1")
+          .define(LocalTime.of(6, 0), 0.0d)
+          .define(LocalTime.of(12, 0), 100.0d)
+          .define(LocalTime.of(21, 0), 0.0d)
+      .channel("ch2")
+          .define(LocalTime.of(0, 0), 33.0d)
+      .interpolate();
 ```
 ### Retrieve the percentage for a certain time
 ```Java
