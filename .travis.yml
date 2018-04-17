@@ -34,3 +34,6 @@ deploy:
       repo: albahrani/dimmingplan
       tags: true
       jdk: oraclejdk8
+notifications:
+    slack: github-albahrani:$SLACK_NOTIFICATIONS
+    
