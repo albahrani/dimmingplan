@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.albahrani</groupId>
 	<artifactId>dimmingplan</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 
 	<name>dimmingplan</name>
 	<description>Realize timetable based dimming with interpolation in Java.</description>
