@@ -18,7 +18,7 @@ Release builds are available from Maven Central
   <dependency>
     <groupId>com.github.albahrani</groupId>
     <artifactId>dimmingplan</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
   </dependency>
 ```
 
@@ -27,7 +27,7 @@ Snapshot builds are available via
   <dependency>
     <groupId>com.github.albahrani</groupId>
     <artifactId>dimmingplan</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
   </dependency>
   ...
   <repository>
