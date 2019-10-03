@@ -105,7 +105,14 @@
 				</executions>
 			</plugin>			
 		</plugins>
-	</build>
+	</build>	
+        <distributionManagement>
+		<repository>
+	   		<id>github</id>
+			<name>GitHub albahrani Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/albahrani/dimmingplan</url>
+		</repository>
+	</distributionManagement>	
 	<profiles>
 		<profile>
 			<id>attachJdocSources</id>
