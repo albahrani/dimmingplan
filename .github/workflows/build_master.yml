@@ -17,4 +17,4 @@ jobs:
       with:
         java-version: 9
     - name: Build with Maven
-      run: mvn package --settings .m2/github-settings.xml --file pom.xml
+      run: mvn deploy --settings .m2/github-settings.xml --file pom.xml
