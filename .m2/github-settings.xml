@@ -31,8 +31,8 @@
   <servers>
     <server>
       <id>github</id>
-      <username>USERNAME</username>
-      <password>GITHUB_REPO_TOKEN</password>
+      <username>${env.USERNAME}</username>
+      <password>${env.GITHUB_REPO_TOKEN}</password>      
     </server>
   </servers>
 </settings>
