@@ -21,6 +21,8 @@
           <id>github</id>
           <name>GitHub albahrani Apache Maven Packages</name>
           <url>https://maven.pkg.github.com/albahrani</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>          
         </repository>
       </repositories>
     </profile>
