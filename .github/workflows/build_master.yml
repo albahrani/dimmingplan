@@ -17,4 +17,7 @@ jobs:
       with:
         java-version: 9
     - name: Build with Maven
+      env:
+        GITHUB_USERNAME: ${{ secrets.USERNAME }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: mvn deploy --settings .m2/github-settings.xml --file pom.xml
