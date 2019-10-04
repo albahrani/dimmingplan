@@ -110,7 +110,7 @@
 		<repository>
 	   		<id>github</id>
 			<name>GitHub albahrani Apache Maven Packages</name>
-			<url>https://maven.pkg.github.com/albahrani/dimmingplan</url>
+			<url>https://maven.pkg.github.com/albahrani</url>
 		</repository>
 	</distributionManagement>	
 	<profiles>
