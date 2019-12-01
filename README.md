@@ -1,4 +1,5 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.albahrani/dimmingplan/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.albahrani/dimmingplan)
+[![](https://jitci.com/gh/albahrani/dimmingplan/svg)](https://jitci.com/gh/albahrani/dimmingplan)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.github.albahrani%3Adimmingplan&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.albahrani%3Adimmingplan)
 [![codebeat badge](https://codebeat.co/badges/ddfd1632-d5a2-4ae6-8121-081958334921)](https://codebeat.co/projects/github-com-albahrani-dimmingplan-master)
 [![Known Vulnerabilities](https://snyk.io/test/github/albahrani/dimmingplan/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/albahrani/dimmingplan?targetFile=pom.xml)
@@ -28,7 +29,9 @@ Snapshot builds are available via
     <artifactId>dimmingplan</artifactId>
     <version>0.0.4-SNAPSHOT</version>
   </dependency>
-  ...
+```
+Don't forget to enable snapshots in your repsitory config 
+```xml  
   <repository>
     <id>sonatype-snapshots-repo</id>
     <url>https://oss.sonatype.org/content/repositories/snapshots</url>
