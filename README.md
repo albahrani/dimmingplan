@@ -3,7 +3,8 @@
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.github.albahrani%3Adimmingplan&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.albahrani%3Adimmingplan)
 [![codebeat badge](https://codebeat.co/badges/ddfd1632-d5a2-4ae6-8121-081958334921)](https://codebeat.co/projects/github-com-albahrani-dimmingplan-master)
 [![Known Vulnerabilities](https://snyk.io/test/github/albahrani/dimmingplan/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/albahrani/dimmingplan?targetFile=pom.xml)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Falbahrani%2Fdimmingplan.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Falbahrani%2Fdimmingplan?ref=badge_shield)                
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Falbahrani%2Fdimmingplan.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Falbahrani%2Fdimmingplan?ref=badge_shield)
+[![Hits-of-Code](https://hitsofcode.com/github/albahrani/dimmingplan)](https://hitsofcode.com/view/github/albahrani/dimmingplan)
 
 # dimmingplan | dimming timetable for Java
 Realize timetable based dimming with interpolation in Java.
