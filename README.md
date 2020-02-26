@@ -1,4 +1,4 @@
-[![Release](https://jitpack.io/v/albahrani/dimmingplan.svg)] (https://jitpack.io/#albahrani/dimmingplan)
+[![Release](https://jitpack.io/v/albahrani/dimmingplan.svg)](https://jitpack.io/#albahrani/dimmingplan)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.albahrani/dimmingplan/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.albahrani/dimmingplan)
 [![](https://jitci.com/gh/albahrani/dimmingplan/svg)](https://jitci.com/gh/albahrani/dimmingplan)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.github.albahrani%3Adimmingplan&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.albahrani%3Adimmingplan)
