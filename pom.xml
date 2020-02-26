@@ -148,6 +148,9 @@
   <profiles>
     <profile>
       <id>coverage</id>
+      <properties>
+         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+      </properties>      
       <activation>
         <activeByDefault>false</activeByDefault>
       </activation>
