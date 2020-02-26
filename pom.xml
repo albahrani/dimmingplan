@@ -149,6 +149,8 @@
     <profile>
       <id>coverage</id>
       <properties>
+         <sonar.projectKey>albahrani_dimmingplan</sonar.projectKey>
+         <sonar.organization>albahrani</sonar.organization>               
          <sonar.host.url>https://sonarcloud.io</sonar.host.url>
       </properties>      
       <activation>
